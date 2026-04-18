@@ -1,0 +1,179 @@
+{
+  "nurse": {
+    "id": "N-4821",
+    "name": "Sarah Mitchell",
+    "unit": "ICU - Cardiac",
+    "role": "Registered Nurse",
+    "shift_type": "Rotating"
+  },
+  "week": "2026-04-13 to 2026-04-19",
+  "schedule": [
+    {
+      "date": "2026-04-13",
+      "day": "Monday",
+      "shift": "Night",
+      "start": "19:00",
+      "end": "07:00+1",
+      "hours": 12,
+      "tasks": [
+        { "time": "19:00", "task": "Handoff briefing from day shift" },
+        { "time": "19:30", "task": "Administer evening medications to 6 patients" },
+        { "time": "20:15", "task": "Emergency admission — trauma patient, bed 7" },
+        { "time": "21:00", "task": "Vitals check — all patients" },
+        { "time": "22:00", "task": "Code Blue called — bed 3, assist resuscitation" },
+        { "time": "23:30", "task": "Post-code documentation and family notification" },
+        { "time": "00:30", "task": "New admission — post-op cardiac patient, bed 2" },
+        { "time": "02:00", "task": "Vitals check + IV line change for bed 5" },
+        { "time": "03:00", "task": "Short break (20 min) — only break of shift" },
+        { "time": "03:20", "task": "Patient in bed 7 agitated, restraint protocol" },
+        { "time": "04:30", "task": "Prepare morning medications" },
+        { "time": "06:00", "task": "Final vitals round" },
+        { "time": "06:45", "task": "Handoff report prep" }
+      ],
+      "notes": "Code Blue + 2 admissions. No meal break.",
+      "overtime_hours": 1.5
+    },
+    {
+      "date": "2026-04-14",
+      "day": "Tuesday",
+      "shift": "OFF (Post-Night)",
+      "start": null,
+      "end": null,
+      "hours": 0,
+      "tasks": [],
+      "notes": "Rest day after overnight. On-call from 18:00.",
+      "overtime_hours": 0
+    },
+    {
+      "date": "2026-04-15",
+      "day": "Wednesday",
+      "shift": "Day",
+      "start": "07:00",
+      "end": "19:30",
+      "hours": 12.5,
+      "tasks": [
+        { "time": "07:00", "task": "Receive handoff from night shift" },
+        { "time": "07:30", "task": "Morning medications — 8 patients" },
+        { "time": "08:30", "task": "Physician rounds — accompany and document" },
+        { "time": "09:15", "task": "Insert PICC line — bed 4, first attempt failed" },
+        { "time": "10:00", "task": "Family meeting — end-of-life discussion, bed 6" },
+        { "time": "11:00", "task": "Rapid response called — bed 1, respiratory distress" },
+        { "time": "11:45", "task": "Patient transfer to OR — coordinate with OR team" },
+        { "time": "12:30", "task": "Lunch break (15 min, eaten at station)" },
+        { "time": "12:45", "task": "Admit 2 new patients from ER" },
+        { "time": "14:00", "task": "Afternoon medications + dressing changes" },
+        { "time": "15:30", "task": "Charge nurse absent — Sarah acting charge nurse" },
+        { "time": "16:00", "task": "Medication error incident report — wrong dosage caught" },
+        { "time": "17:00", "task": "Final vitals round" },
+        { "time": "18:00", "task": "Handoff prep" },
+        { "time": "18:30", "task": "Late admission delays handoff by 1 hr" }
+      ],
+      "notes": "Acting charge nurse. Stayed 30 min late for admission.",
+      "overtime_hours": 0.5
+    },
+    {
+      "date": "2026-04-16",
+      "day": "Thursday",
+      "shift": "Day",
+      "start": "07:00",
+      "end": "19:00",
+      "hours": 12,
+      "tasks": [
+        { "time": "07:00", "task": "Handoff from night shift" },
+        { "time": "07:30", "task": "Morning meds — 7 patients" },
+        { "time": "08:00", "task": "Wound care — 3 patients (45 min each)" },
+        { "time": "10:15", "task": "Interdisciplinary care conference" },
+        { "time": "11:30", "task": "Blood transfusion — bed 2, monitor closely" },
+        { "time": "13:00", "task": "No break — covering for called-out colleague" },
+        { "time": "14:00", "task": "Discharge 2 patients, prep discharge instructions" },
+        { "time": "15:30", "task": "2 new admissions from ER" },
+        { "time": "17:00", "task": "Afternoon medications" },
+        { "time": "18:00", "task": "Final assessments + charting" }
+      ],
+      "notes": "No break. Covered colleague's patients (12 patients total at peak).",
+      "overtime_hours": 0
+    },
+    {
+      "date": "2026-04-17",
+      "day": "Friday",
+      "shift": "Night",
+      "start": "19:00",
+      "end": "07:00+1",
+      "hours": 12,
+      "tasks": [
+        { "time": "19:00", "task": "Handoff from day shift" },
+        { "time": "19:30", "task": "Evening medications" },
+        { "time": "20:00", "task": "Patient fall — bed 5, assessment + incident report" },
+        { "time": "21:00", "task": "Vitals round" },
+        { "time": "22:00", "task": "Surgeon calls with post-op orders — update care plans" },
+        { "time": "23:00", "task": "Family member agitated in waiting room — de-escalation" },
+        { "time": "00:00", "task": "Midnight meds + IV bag changes" },
+        { "time": "01:30", "task": "Break (20 min)" },
+        { "time": "02:00", "task": "Stat labs ordered — draw from 4 patients" },
+        { "time": "03:30", "task": "Critical lab value — notify on-call physician" },
+        { "time": "04:00", "task": "New order set — implement and document" },
+        { "time": "05:00", "task": "Pre-morning vitals round" },
+        { "time": "06:00", "task": "Prepare handoff report for 8 patients" }
+      ],
+      "notes": "Patient fall + critical lab. Short-staffed (1 aide called out).",
+      "overtime_hours": 0
+    },
+    {
+      "date": "2026-04-18",
+      "day": "Saturday",
+      "shift": "Extended Day (Mandatory Overtime)",
+      "start": "07:00",
+      "end": "23:00",
+      "hours": 16,
+      "tasks": [
+        { "time": "07:00", "task": "Receive handoff — skipped sleep, came in early" },
+        { "time": "07:30", "task": "Morning meds — 9 patients (unit short-staffed)" },
+        { "time": "09:00", "task": "Rapid response — bed 8, septic shock" },
+        { "time": "10:00", "task": "Coordinate ICU transfer for septic patient" },
+        { "time": "10:45", "task": "3 new admissions — all high acuity" },
+        { "time": "12:00", "task": "Lunch (10 min, standing at nursing station)" },
+        { "time": "12:10", "task": "Afternoon meds + insulin administration" },
+        { "time": "14:00", "task": "Mandatory overtime request from charge nurse" },
+        { "time": "14:30", "task": "Code Blue — bed 1, full resuscitation 40 min" },
+        { "time": "15:30", "task": "Family grief support after code" },
+        { "time": "16:30", "task": "Documentation catch-up — 3 hrs behind on charting" },
+        { "time": "18:00", "task": "Evening meds" },
+        { "time": "19:00", "task": "Originally scheduled off — mandatory overtime continues" },
+        { "time": "20:00", "task": "Vitals round" },
+        { "time": "21:00", "task": "Late admission — post-surgical" },
+        { "time": "22:00", "task": "Final charting + handoff prep" }
+      ],
+      "notes": "16-hr mandatory OT shift. Code Blue. Septic shock. 3 hrs behind on charting.",
+      "overtime_hours": 4
+    },
+    {
+      "date": "2026-04-19",
+      "day": "Sunday",
+      "shift": "OFF (Scheduled)",
+      "start": null,
+      "end": null,
+      "hours": 0,
+      "tasks": [
+        { "time": "10:00", "task": "Called in — asked to cover 4-hr shift (declined)" }
+      ],
+      "notes": "Requested as day off. Received call-in request.",
+      "overtime_hours": 0
+    }
+  ],
+  "weekly_summary": {
+    "scheduled_hours": 36,
+    "actual_hours": 52.5,
+    "overtime_hours": 6,
+    "code_blues": 2,
+    "rapid_responses": 2,
+    "missed_breaks": 3,
+    "total_patients_cared_for": 47,
+    "incidents": [
+      "Code Blue x2",
+      "Patient fall",
+      "Medication error caught (near-miss)",
+      "Rapid response x2",
+      "Septic shock transfer"
+    ]
+  }
+}
