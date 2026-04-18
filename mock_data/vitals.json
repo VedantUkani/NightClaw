@@ -1,0 +1,39 @@
+{
+  "user_id": "nurse_001",
+  "recorded_at": "2026-04-18T22:45:00-05:00",
+  "source": "wearable_device",
+  "current": {
+    "heart_rate_bpm": 101,
+    "hrv_ms": 28,
+    "systolic_bp_mmhg": 138,
+    "diastolic_bp_mmhg": 89,
+    "spo2_percent": 96,
+    "skin_temp_celsius": 37.4,
+    "steps_today": 14820,
+    "stress_score": 82
+  },
+  "sleep": {
+    "last_sleep_date": "2026-04-17",
+    "total_hours": 3.5,
+    "deep_sleep_hours": 0.6,
+    "rem_sleep_hours": 0.8,
+    "sleep_score": 41,
+    "consecutive_short_nights": 3
+  },
+  "trend_24h": [
+    { "time": "07:00", "heart_rate_bpm": 88, "spo2_percent": 97, "stress_score": 54 },
+    { "time": "09:00", "heart_rate_bpm": 95, "spo2_percent": 97, "stress_score": 71 },
+    { "time": "12:00", "heart_rate_bpm": 99, "spo2_percent": 96, "stress_score": 78 },
+    { "time": "14:30", "heart_rate_bpm": 112, "spo2_percent": 96, "stress_score": 91 },
+    { "time": "17:00", "heart_rate_bpm": 104, "spo2_percent": 96, "stress_score": 85 },
+    { "time": "19:00", "heart_rate_bpm": 108, "spo2_percent": 95, "stress_score": 88 },
+    { "time": "22:45", "heart_rate_bpm": 101, "spo2_percent": 96, "stress_score": 82 }
+  ],
+  "flags": [
+    "elevated_resting_hr",
+    "low_hrv",
+    "hypertensive_reading",
+    "sleep_deficit",
+    "high_stress"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "user_id": "nurse_001",
+  "name": "Sarah Chen",
+  "role": "Registered Nurse",
+  "department": "ICU",
+  "employee_id": "EMP-4421",
+  "age": 34,
+  "gender": "female",
+  "height_cm": 165,
+  "weight_kg": 62,
+  "baseline": {
+    "resting_heart_rate_bpm": 68,
+    "systolic_bp_mmhg": 118,
+    "diastolic_bp_mmhg": 76,
+    "spo2_percent": 98,
+    "avg_sleep_hours": 6.5,
+    "avg_hrv_ms": 52
+  },
+  "conditions": ["mild_hypertension"],
+  "medications": ["lisinopril_5mg"],
+  "shift_type": "night",
+  "shift_pattern": "3-on-4-off",
+  "tenure_years": 6,
+  "contact": {
+    "telegram_id": 198472610,
+    "timezone": "America/Chicago"
+  }
+}
