@@ -9,21 +9,21 @@ description: >-
 
 # NightClaw — Scout (schedule reading)
 
-## Reference codebase (read-only)
+## Code layout
 
-Noxturn behavior is implemented in the sibling **HackASU** repository (not this repo). Paths below are `HackASU/backend/...`.
+Paths are relative to the NightClaw repository root (e.g. `backend/`).
 
 ## Role
 
 Scout is the **schedule ingestion** slice: turn user schedule input into `ScheduleBlock` rows with consistent `duration_hours` and commute minutes, and surface parse warnings and replan hints.
 
-## Noxturn source map
+## Implementation map
 
 | Concern | Location |
 |--------|----------|
-| HTTP route + raw_text parse loop, `_normalize_block` | `HackASU/backend/app/routes/schedule.py` |
-| `ScheduleBlock`, `BlockType`, import request/response | `HackASU/backend/app/models/schemas.py` |
-| Change detection driving replan | `HackASU/backend/app/services/schedule_change_detector.py` (called from schedule route) |
+| HTTP route + raw_text parse loop, `_normalize_block` | `backend/app/routes/schedule.py` |
+| `ScheduleBlock`, `BlockType`, import request/response | `backend/app/models/schemas.py` |
+| Change detection driving replan | `backend/app/services/schedule_change_detector.py` (called from schedule route) |
 
 Parse format for `raw_text` (minimal placeholder): one block per line — `block_type,start_iso,end_iso,optional_title` (comma-separated). `block_type` must match `BlockType` enum values (e.g. `night_shift`).
 
