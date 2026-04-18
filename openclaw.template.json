@@ -1,0 +1,159 @@
+{
+  "agents": {
+    "defaults": {
+      "workspace": "~/.openclaw/workspace",
+      "models": {
+        "anthropic/claude-haiku-4-5": {}
+      },
+      "model": {
+        "primary": "anthropic/claude-haiku-4-5"
+      }
+    },
+    "list": [
+      {
+        "id": "main"
+      },
+      {
+        "id": "nightclaw-orchestrator",
+        "name": "nightclaw-orchestrator",
+        "workspace": "~/.openclaw/workspace-nightclaw-orchestrator",
+        "agentDir": "~/.openclaw/agents/nightclaw-orchestrator/agent",
+        "model": "anthropic/claude-haiku-4-5"
+      },
+      {
+        "id": "nightclaw-scout",
+        "name": "nightclaw-scout",
+        "workspace": "~/.openclaw/workspace-nightclaw-scout",
+        "agentDir": "~/.openclaw/agents/nightclaw-scout/agent",
+        "model": "anthropic/claude-haiku-4-5"
+      },
+      {
+        "id": "nightclaw-medic",
+        "name": "nightclaw-medic",
+        "workspace": "~/.openclaw/workspace-nightclaw-medic",
+        "agentDir": "~/.openclaw/agents/nightclaw-medic/agent",
+        "model": "anthropic/claude-haiku-4-5"
+      },
+      {
+        "id": "nightclaw-analyst",
+        "name": "nightclaw-analyst",
+        "workspace": "~/.openclaw/workspace-nightclaw-analyst",
+        "agentDir": "~/.openclaw/agents/nightclaw-analyst/agent",
+        "model": "anthropic/claude-haiku-4-5"
+      },
+      {
+        "id": "nightclaw-coach",
+        "name": "nightclaw-coach",
+        "workspace": "~/.openclaw/workspace-nightclaw-coach",
+        "agentDir": "~/.openclaw/agents/nightclaw-coach/agent",
+        "model": "anthropic/claude-haiku-4-5"
+      },
+      {
+        "id": "nightclaw-evidence",
+        "name": "nightclaw-evidence",
+        "workspace": "~/.openclaw/workspace-nightclaw-evidence",
+        "agentDir": "~/.openclaw/agents/nightclaw-evidence/agent",
+        "model": "anthropic/claude-haiku-4-5"
+      }
+    ]
+  },
+  "gateway": {
+    "mode": "local",
+    "auth": {
+      "mode": "token",
+      "token": "<YOUR_GATEWAY_TOKEN>"
+    },
+    "port": 18789,
+    "bind": "loopback",
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "controlUi": {
+      "allowInsecureAuth": true
+    }
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "tools": {
+    "profile": "coding",
+    "web": {
+      "search": {
+        "provider": "duckduckgo",
+        "enabled": true
+      },
+      "fetch": {
+        "enabled": true
+      }
+    },
+    "agentToAgent": {
+      "enabled": true,
+      "allow": [
+        "nightclaw-orchestrator",
+        "nightclaw-scout",
+        "nightclaw-medic",
+        "nightclaw-analyst",
+        "nightclaw-coach",
+        "nightclaw-evidence"
+      ]
+    }
+  },
+  "auth": {
+    "profiles": {
+      "anthropic:default": {
+        "provider": "anthropic",
+        "mode": "api_key"
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "groups": {
+        "*": {
+          "requireMention": true
+        }
+      },
+      "botToken": "<YOUR_TELEGRAM_BOT_TOKEN>",
+      "dmPolicy": "allowlist",
+      "allowFrom": [
+        "<YOUR_TELEGRAM_USER_ID>"
+      ]
+    }
+  },
+  "plugins": {
+    "entries": {
+      "duckduckgo": {
+        "enabled": true
+      },
+      "anthropic": {
+        "enabled": true
+      }
+    }
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    }
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "session-memory": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "bindings": [
+    {
+      "type": "route",
+      "agentId": "nightclaw-orchestrator",
+      "match": {
+        "channel": "telegram"
+      }
+    }
+  ]
+}
