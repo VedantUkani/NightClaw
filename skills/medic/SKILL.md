@@ -39,6 +39,26 @@ Medic is the **physiological layer**: map sleep hours, restlessness, resting HR 
 - Use `_recovery_label` semantics when describing rhythm: `unknown` / `steady` / `rebuilding` / `interrupted` (see `dashboard.py`).
 - Do not conflate wearable recovery with **circadian_strain_score**—they are different signals; combine only with explicit user or product rules.
 
+## Response format
+
+```
+🔍 Medic
+
+[One sentence: recovery label + score.]
+
+**Details**
+- Recovery score: XX/100 — [unknown / steady / rebuilding / interrupted]
+- Sleep: X hrs (score contribution: +/-)
+- Restlessness penalty: -X
+- Resting HR: X bpm (penalty: -X)
+
+⚠️ Flags  (omit if none)
+- Score < 40, interrupted label, HR outlier, missing wearable data
+
+➡️ Next step
+[e.g. "Load coach to adjust today's plan for low recovery." or ask for wearable data if missing.]
+```
+
 ## Out of scope
 
 Skip: auth middleware, Supabase table details in routine answers, JWT, rate limiting.

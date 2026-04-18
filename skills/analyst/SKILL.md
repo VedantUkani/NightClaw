@@ -42,6 +42,26 @@ From `RiskEngine._compute_strain_score`: average `severity_score` over up to **1
 - Explain episodes using `label`, `severity_score`, `explanation.message`, and `suggested_interventions` keys—not invented clinical text.
 - Clustering marks `cluster_flag` and bumps scores; dedup merges overlapping *different-label* episodes ≥50% overlap.
 
+## Response format
+
+```
+🔍 Analyst
+
+[One sentence: strain score + overall risk level.]
+
+**Details**
+- Strain score: XX/100 (protect / recover / stabilize / perform)
+- Episode 1: [label] — severity XX — [explanation.message]
+- Episode 2: …
+- (cluster_flag / dedup notes if relevant)
+
+⚠️ Flags  (omit if none)
+- Any episode with severity ≥ 70, unsafe_drive, or cluster_flag=true
+
+➡️ Next step
+[e.g. "Load coach to generate a recovery plan." or ask for schedule blocks if missing.]
+```
+
 ## Out of scope
 
 Skip: auth, Supabase saves in explanations, JWT, rate limiting, FastAPI boilerplate.

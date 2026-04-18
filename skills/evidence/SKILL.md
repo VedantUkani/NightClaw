@@ -35,6 +35,26 @@ Evidence is the **retrieval layer**: given a query string, return top interventi
 - When citing, use the **same structure** the planner expects: numbered list and `[N] title` style `evidence_ref` on tasks (see `claude_planner.py` SYSTEM_PROMPT).
 - Prefer **editing JSON corpora** and re-running ingest over inventing long clinical passages in prompts.
 
+## Response format
+
+```
+🔍 Evidence
+
+[One sentence: what was retrieved and for which query.]
+
+**Details**
+- [1] [card title] — relevance score X.XX
+  [One-line summary of the intervention]
+- [2] …
+- (up to top-5 cards/chunks)
+
+⚠️ Flags  (omit if none)
+- No vector embeddings (keyword fallback used), low relevance scores (< 0.4), corpus outdated
+
+➡️ Next step
+[e.g. "Use these refs in coach to build an evidence-backed plan." or suggest re-running ingest if results are poor.]
+```
+
 ## Out of scope
 
 Skip: Supabase credentials setup, JWT, pgvector migrations as default focus—reference `sql/` only when the user asks for DB/schema work.
