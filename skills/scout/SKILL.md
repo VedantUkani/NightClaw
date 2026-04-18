@@ -1,0 +1,38 @@
+---
+name: scout
+description: >-
+  Normalizes and reasons about shift schedules for NightClaw (OpenClaw). Parses
+  pasted schedule text or structured blocks, applies commute defaults, and ties
+  into change detection and replan signals. Use when ingesting schedules,
+  validating ScheduleBlock data, or explaining how raw_text import works.
+---
+
+# NightClaw — Scout (schedule reading)
+
+## Reference codebase (read-only)
+
+Noxturn behavior is implemented in the sibling **HackASU** repository (not this repo). Paths below are `HackASU/backend/...`.
+
+## Role
+
+Scout is the **schedule ingestion** slice: turn user schedule input into `ScheduleBlock` rows with consistent `duration_hours` and commute minutes, and surface parse warnings and replan hints.
+
+## Noxturn source map
+
+| Concern | Location |
+|--------|----------|
+| HTTP route + raw_text parse loop, `_normalize_block` | `HackASU/backend/app/routes/schedule.py` |
+| `ScheduleBlock`, `BlockType`, import request/response | `HackASU/backend/app/models/schemas.py` |
+| Change detection driving replan | `HackASU/backend/app/services/schedule_change_detector.py` (called from schedule route) |
+
+Parse format for `raw_text` (minimal placeholder): one block per line — `block_type,start_iso,end_iso,optional_title` (comma-separated). `block_type` must match `BlockType` enum values (e.g. `night_shift`).
+
+## Agent instructions
+
+- Prefer **structured `blocks`** in APIs when correctness matters; treat **raw_text** as a thin comma parser awaiting richer NLP.
+- Always carry **commute** via `commute_minutes` default or per-block overrides; normalization fills `duration_hours` and default commutes.
+- Do not duplicate FastAPI auth, Pydantic wrappers, or Supabase persistence in agent logic—focus on **pure normalization and schema**.
+
+## Out of scope (team convention)
+
+Skip entirely: `auth/`, Supabase/JWT, rate limiting, response model boilerplate, deployment configs.
