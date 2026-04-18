@@ -1,0 +1,12 @@
+# Claude Code internal state
+.claude/
+
+# Environment secrets
+.env.local
+.env*.local
+
+# Throwaway dev/debug scripts
+web/check-db.mjs
+web/run-seed.mjs
+web/seed-shifts.mjs
+web/seed.mjs
