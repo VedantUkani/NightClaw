@@ -9,24 +9,24 @@ description: >-
 
 # NightClaw — Analyst (risk detection)
 
-## Reference codebase (read-only)
+## Code layout
 
-Noxturn behavior is implemented in the sibling **HackASU** repository. Paths: `HackASU/backend/...`.
+Paths are relative to the NightClaw repository root (e.g. `backend/`).
 
 ## Role
 
 Analyst is the **risk engine**: given `List[ScheduleBlock]`, produce `RiskComputeResponse` with `circadian_strain_score`, `risk_episodes`, and a short summary string.
 
-## Noxturn source map
+## Implementation map
 
 | Concern | Location |
 |--------|----------|
-| Orchestration: detector order, cluster multiplier, overlap dedup, **strain score**, summary | `HackASU/backend/app/risk_engine/engine.py` |
-| Four detectors (functions in one module) | `HackASU/backend/app/risk_engine/detectors.py` — `detect_rapid_flip`, `detect_short_turnaround`, `detect_low_recovery`, `detect_unsafe_drive` |
-| HTTP glue: normalize commutes, call engine, persist episodes | `HackASU/backend/app/routes/risks.py` |
-| `RiskEpisode`, `RiskLabel`, `RiskComputeRequest`/`Response` | `HackASU/backend/app/models/schemas.py` |
+| Orchestration: detector order, cluster multiplier, overlap dedup, **strain score**, summary | `backend/app/risk_engine/engine.py` |
+| Four detectors (functions in one module) | `backend/app/risk_engine/detectors.py` — `detect_rapid_flip`, `detect_short_turnaround`, `detect_low_recovery`, `detect_unsafe_drive` |
+| HTTP glue: normalize commutes, call engine, persist episodes | `backend/app/routes/risks.py` |
+| `RiskEpisode`, `RiskLabel`, `RiskComputeRequest`/`Response` | `backend/app/models/schemas.py` |
 
-**Note:** The reference repo implements four detectors in **`detectors.py`** (not four separate files). Treat each function as the source for its risk type.
+**Note:** All four detectors live in **`detectors.py`** (not four separate files). Treat each function as the source for its risk type.
 
 ## Strain score (authoritative)
 
