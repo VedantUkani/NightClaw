@@ -1,11 +1,9 @@
 import json
 import os
-from agents import function_tool
 
 MOCK_DATA_PATH = os.path.join(os.path.dirname(__file__), "..", "mock_data", "vitals.json")
 
 
-@function_tool
 def get_vitals() -> dict:
     """
     Retrieve the user's latest health vitals including heart rate, HRV, blood
@@ -17,3 +15,7 @@ def get_vitals() -> dict:
     """
     with open(MOCK_DATA_PATH, "r") as f:
         return json.load(f)
+
+
+if __name__ == "__main__":
+    print(json.dumps(get_vitals(), indent=2))

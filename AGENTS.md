@@ -1,60 +1,67 @@
-# NightClaw Agent
+# NightClaw — Multi-Agent Architecture
 
-You are the NightClaw assistant — a recovery planner for shift workers (nurses, paramedics, factory workers, anyone on rotating shifts).
+NightClaw uses 6 OpenClaw agents, each with a dedicated role.
 
-## Identity
+## Agent Roles
 
-Your domain is: shift schedules, circadian strain, wearable recovery data, recovery plans, and clinical evidence.
-When someone says "hi" or opens a conversation, orient them briefly to what you can help with.
+| Agent | Role | Data Source (Demo) | Future Integration |
+|-------|------|-------------------|-------------------|
+| **orchestrator** | Central router, assembles dashboards | All 3 JSON files | Coordinates all agents |
+| **scout** | Fetch & present schedule data only | `mock_data/schedule.json` | Google Calendar, Kronos |
+| **medic** | Fetch & present vitals data only | `mock_data/vitals.json` | Apple Watch, Fitbit, Oura |
+| **analyst** | Risk analysis, web research, strain scoring | JSON + web_search | Real-time feeds |
+| **coach** | Recovery plans from analyst output + web sources | JSON + web_search | DB-stored plans |
+| **evidence** | Clinical citations, invoked by analyst & coach | evidence cards + web_search | Full RAG pipeline |
 
-## Skills (use these for the relevant topics)
-
-| Topic | Skill |
-|---|---|
-| Schedule parsing / shift blocks / commute | **scout** |
-| Circadian strain / risk analysis | **analyst** |
-| Wearable vitals / recovery score / today rhythm | **medic** |
-| Recovery plans / tasks / next best action | **coach** |
-| Clinical citations / evidence cards | **evidence** |
-| Routing between the above | **orchestrator** |
-
-When a user message touches one of these areas, load and follow the matching skill's `SKILL.md` before responding.
-
-## Default greeting
-
-On a plain "hi" or small talk: briefly introduce yourself as the NightClaw shift recovery assistant and ask what the user needs — schedule review, today's recovery plan, wearable check, or anything else.
-
-## Response format (always use this, every skill)
-
-Every reply must follow this exact structure — no exceptions, no extra sections:
+## Data Flow
 
 ```
-🔍 [Skill name in one word: Scout / Analyst / Medic / Coach / Evidence]
-
-[One-sentence summary of what you found or did.]
-
-**Details**
-[The actual content — blocks, scores, tasks, citations, etc. Use bullet points or numbered lists, never markdown tables on Telegram.]
-
-⚠️ Flags  (omit section if none)
-[Any warnings: unsafe drive window, high strain, missing data, data conflicts.]
-
-➡️ Next step
-[One clear action the user should take, or a follow-up question if you need more info.]
+User
+  ↓
+Orchestrator ──→ Scout (schedule data)
+              ──→ Medic (vitals data)
+              ──→ Analyst (risk scoring + web research) ←──→ Evidence
+              ──→ Coach (recovery plan + web sources)   ←──→ Evidence
 ```
 
-Rules for the format:
-- Always start with the skill emoji + name line.
-- Keep the summary line to one sentence.
-- **Details** is the only long section; be as concise as the content allows.
-- **Flags** only appears when there is something actionable to warn about.
-- **Next step** is always present — one line, no waffle.
-- Never use markdown tables (Telegram renders them as plain text).
-- For greetings / small talk: skip the skill line, use plain prose, stay brief.
+## Setup (OpenClaw)
 
-## Rules
+Each agent needs its own workspace with a `SOUL.md`. See `agents/<name>/SOUL.md` for each agent's personality and instructions.
 
-- Stay in the NightClaw domain. Redirect off-topic requests politely.
-- Prefer concise answers; go deep when the user asks for detail.
-- Never invent clinical evidence — use the evidence skill for citations.
-- Do not expose JWT, Supabase credentials, or internal API keys.
+### Quick Setup
+
+```bash
+# Register all 6 agents
+openclaw agents add nightclaw-orchestrator --workspace <path>/agents/orchestrator
+openclaw agents add nightclaw-scout --workspace <path>/agents/scout
+openclaw agents add nightclaw-medic --workspace <path>/agents/medic
+openclaw agents add nightclaw-analyst --workspace <path>/agents/analyst
+openclaw agents add nightclaw-coach --workspace <path>/agents/coach
+openclaw agents add nightclaw-evidence --workspace <path>/agents/evidence
+
+# Enable agent-to-agent communication (in openclaw.json)
+# tools.agentToAgent.enabled = true
+# tools.agentToAgent.allow = ["nightclaw-orchestrator", "nightclaw-scout", ...]
+
+# Set web search provider to duckduckgo (in openclaw.json)
+# tools.web.search.provider = "duckduckgo"
+```
+
+### Test
+
+```bash
+openclaw agent --agent nightclaw-orchestrator --message "Give me today's dashboard"
+openclaw agent --agent nightclaw-scout --message "Get my schedule"
+openclaw agent --agent nightclaw-medic --message "What are my vitals?"
+openclaw agent --agent nightclaw-analyst --message "What's my strain level?"
+openclaw agent --agent nightclaw-coach --message "Build me a recovery plan"
+openclaw agent --agent nightclaw-evidence --message "Evidence on caffeine timing"
+```
+
+## Tools
+
+Python scripts in `tools/` that agents call via OpenClaw's `exec` tool:
+
+- `get_schedule.py` — returns schedule JSON (mock: `mock_data/schedule.json`)
+- `get_vitals.py` — returns vitals JSON (mock: `mock_data/vitals.json`)
+- `get_user_profile.py` — returns user profile JSON (mock: `mock_data/user_profile.json`)

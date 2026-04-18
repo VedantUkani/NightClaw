@@ -1,11 +1,9 @@
 import json
 import os
-from agents import function_tool
 
 MOCK_DATA_PATH = os.path.join(os.path.dirname(__file__), "..", "mock_data", "user_profile.json")
 
 
-@function_tool
 def get_user_profile() -> dict:
     """
     Retrieve the current user's profile including personal details, baseline
@@ -16,3 +14,7 @@ def get_user_profile() -> dict:
     """
     with open(MOCK_DATA_PATH, "r") as f:
         return json.load(f)
+
+
+if __name__ == "__main__":
+    print(json.dumps(get_user_profile(), indent=2))
