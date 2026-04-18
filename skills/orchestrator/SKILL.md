@@ -39,6 +39,29 @@ Orchestrator decides **which specialist skill applies** and how **today** is ass
 - Route **schedule** questions to **scout**; **risk/strain** to **analyst**; **wearables/today rhythm** to **medic** + dashboard; **plans/messages** to **coach**; **citations/cards** to **evidence**.
 - Treat `plan_state` as **ephemeral** unless DB persistence is confirmed—explain "server restart" behavior using `dashboard.py` fallback path.
 
+## Response format
+
+```
+🔍 Orchestrator
+
+[One sentence: what the user asked and which skills were invoked.]
+
+**Details**
+- Intent detected: [schedule / risk / wearable / plan / evidence / today]
+- Skills used: scout → analyst → coach (or whatever chain ran)
+- Today snapshot:
+  - Plan mode: [mode]
+  - Recovery label: [label]
+  - Next best action: [text]
+  - Anchor tasks: [titles]
+
+⚠️ Flags  (omit if none)
+- Plan state ephemeral (not persisted), missing wearable data, high strain with no plan
+
+➡️ Next step
+[e.g. "Ask for your shift schedule to start a full analysis." or hand off to a specific skill.]
+```
+
 ## Out of scope
 
 Skip: `require_user`, JWT, Supabase query error handling boilerplate, deployment.

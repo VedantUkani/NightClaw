@@ -34,6 +34,29 @@ Coach is the **plan generator**: from `RiskComputeResponse`, produce `PlanGenera
 - Prefer **traceable** `source_reason` and real risk references; do not invent `evidence_ref`—use RAG numbering when evidence is supplied (LLM path).
 - Without API keys, mirror **rule planner** patterns: one core task per risk episode, then fill category coverage (caffeine, light, movement, etc.) as in `RulePlanner._tasks_from_risks`.
 
+## Response format
+
+```
+🔍 Coach
+
+[One sentence: plan mode + core intent.]
+
+**Details**
+- Plan mode: protect / recover / stabilize / perform
+- Next best action: [next_best_action text]
+- Tasks:
+  1. [category] [title] — [time] (anchor: yes/no)
+  2. …
+- Avoid: [avoid_list items]
+- Evidence refs: [1] title, [2] title … (omit if none)
+
+⚠️ Flags  (omit if none)
+- Missing anchor (sleep/safety), strain ≥ 75 with no protect mode, invented evidence
+
+➡️ Next step
+[e.g. "Send /plans/generate with this payload." or ask for risk data if not provided.]
+```
+
 ## Out of scope
 
 Skip: `rate_limiter`, `token_tracker`, Supabase `save_plan` internals, FastAPI decorators, verbose Pydantic boilerplate.

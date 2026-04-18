@@ -33,6 +33,25 @@ Parse format for `raw_text` (minimal placeholder): one block per line — `block
 - Always carry **commute** via `commute_minutes` default or per-block overrides; normalization fills `duration_hours` and default commutes.
 - Do not duplicate FastAPI auth, Pydantic wrappers, or Supabase persistence in agent logic—focus on **pure normalization and schema**.
 
+## Response format
+
+```
+🔍 Scout
+
+[One sentence: what was parsed / what changed.]
+
+**Details**
+- block_type, start → end, duration_hours, commute_minutes
+- (one bullet per block)
+- Parse warnings if any
+
+⚠️ Flags  (omit if none)
+- Overlap, missing commute, unrecognised block_type, replan triggered
+
+➡️ Next step
+[e.g. "Run analyst to check circadian risk for this schedule." or ask for missing info.]
+```
+
 ## Out of scope (team convention)
 
 Skip entirely: `auth/`, Supabase/JWT, rate limiting, response model boilerplate, deployment configs.
